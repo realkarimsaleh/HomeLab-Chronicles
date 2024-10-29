@@ -7,7 +7,7 @@ This section of **HomeLab Chronicles** provides step-by-step setup guides for th
 ### Networking
 
 ### Servers
-- [Snipe-IT Setup](Servers/snipe-it-setup.md): Instructions for installing and configuring Snipe-IT for asset management.
+- [Snipe-IT Setup](Servers/Snipe-IT-Setup/Snipe-IT-Setup.md): Instructions for installing and configuring Snipe-IT for asset management.
 
 ### Automation
 
