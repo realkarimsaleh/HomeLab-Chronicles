@@ -4,7 +4,7 @@ This section covers detailed setup guides for various servers used in my home la
 
 ## Available Guides
 
-- [Snipe-IT Setup](Snipe-IT-Setup.md): Instructions for installing and configuring Snipe-IT, an open-source asset management tool.
+- [Snipe-IT Setup](Snipe-IT-Setup/Snipe-IT-Setup.md): Instructions for installing and configuring Snipe-IT, an open-source asset management tool.
 
 ## Purpose
 These guides aim to provide clear, hands-on instructions to help others set up and manage servers for various purposes in a home lab environment.
