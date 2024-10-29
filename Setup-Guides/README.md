@@ -1,6 +1,6 @@
 # Setup Guides
 
-This section of **HomeLab Chronicles** provides step-by-step setup guides for the projects I have persued in my home lab. Below is a list of available guides, organized by category.
+This section of **HomeLab Chronicles** provides step-by-step setup guides for the projects I have persued in my home lab. Below is a list of available guides, organised by category.
 
 ## Guides
 
