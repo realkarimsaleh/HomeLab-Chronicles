@@ -163,7 +163,7 @@ DB_DATABASE=snipeitdb
 DB_USERNAME=snipeituser
 DB_PASSWORD=Password
 ```
-For *APP_TIMEZONE* should use a [PHP-supported timezone]{https://www.php.net/manual/en/timezones.php}, and should be enclosed in single quotes.
+For *APP_TIMEZONE*, you should use a [PHP-supported timezone](https://www.php.net/manual/en/timezones.php) and enclose it in single quotes.
 
 Set permissions for the Snipe-IT directories:
 
