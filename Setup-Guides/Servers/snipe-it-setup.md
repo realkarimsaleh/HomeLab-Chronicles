@@ -9,14 +9,14 @@ Setting it up can be challenging, but I’ll guide you through the installation 
 ## 1. Install Ubuntu Server 20.04
 You can install this on a physical server or a virtual machine.
 
-Open SSH or Putty, then update and upgrade the packages by running:
+Open SSH through Terminal or Putty, then update and upgrade the packages by running:
 
 ```bash
 sudo apt update -y && sudo apt upgrade -y
 ```
 
 ## 2. Install LAMP on Ubuntu
-We need to turn Ubuntu into a web server. Follow these steps to install LAMP:
+This will allow us to turn our Ubuntu into a web server. Follow these steps to install LAMP:
 
 ### Install Apache2
 Install Apache2 using the following command:
@@ -43,7 +43,7 @@ Validate the installation by checking the Apache version:
 apache2 -v
 ```
 
-If a firewall is enabled, allow HTTP and HTTPS traffic:
+If firewall is enabled, allow HTTP and HTTPS traffic:
 
 ```bash
 sudo ufw allow 80/tcp
