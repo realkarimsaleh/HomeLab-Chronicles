@@ -5,6 +5,8 @@ This section covers various networking guides and configurations aimed at enhanc
 ## Available Guides
 
 - [Debranding Linksys SPNMX42](Debranding-Linksys-SPNMX42/Debranding-Linksys-SPNMX42.md): An attempt on debranding an ISP-provided Linksys MX4200/SPNMX42/AX4200 router to regain full control over its settings and features.
+- [Hyper-V Networking Explained](Hyper-V/Hyper-V-Networking-Explained.md): A guide explaining Hyper-V networking concepts, configurations, and best practices.
+
 
 ## Purpose
 These guides aim to provide practical, hands-on instructions for managing network devices and configurations within a home lab environment. Whether you're looking to debrand a device, secure your network, or monitor performance, these resources offer a comprehensive starting point.
