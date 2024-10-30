@@ -112,7 +112,7 @@ This SSH-based method transitions your router from OpenWRT to Linksys Retail fir
 ## Additional Resources
 
 - [ISPreview Guide on Debranding Linksys MX4200](https://www.ispreview.co.uk/talk/threads/how-to-debrand-a-linksys-mx4200-v1.39281/): Detailed user discussions on debranding the MX4200.
-- [Community Fibre WHW03CFv2 Guide on GitHub](https://github.com/ishi0/Community-Fibre-WHW03CFv2/wiki): Community-led guide with additional details on firmware flashing and troubleshooting.
+- [Community Fibre WHW03CFv2 Guide on GitHub](https://github.com/ishi0/Community-Fibre-WHW03CFv2/wiki): Guide by [@ishi0](https://github.com/ishi0) with additional details on firmware flashing and troubleshooting.
 
 By following either of these methods, you can successfully debrand your Community Fibre router and unlock additional configuration options.
 
