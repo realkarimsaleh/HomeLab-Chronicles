@@ -1,4 +1,4 @@
-# Breaking into Windows Device Base by Replacing Utilman.exe with Cmd.exe
+# Breaking into Windows Device by Replacing Utilman.exe with Cmd.exe
 
 This guide explains how to temporarily replace **Utilman.exe** with **Cmd.exe** to gain access to a Windows system. This method is useful if you’re locked out of the system or need to reset a local administrator password. By using this approach, you can access the system with elevated privileges and reset the **Administrator** account or create a new one.
 
