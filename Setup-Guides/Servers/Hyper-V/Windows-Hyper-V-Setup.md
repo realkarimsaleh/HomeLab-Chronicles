@@ -69,4 +69,4 @@ If you encounter issues enabling Hyper-V, try the following troubleshooting step
 
 ---
 
-With Hyper-V enabled, you can start creating and managing virtual machines on your Windows system. For guides on creating a virtual machine, see our [Hyper-V VM Setup Guide](link-to-your-vm-setup-guide).
+With Hyper-V enabled, you can start creating and managing virtual machines on your Windows system. For guides on creating a virtual machine, see [Hyper-V VM Setup Guide](link-to-your-vm-setup-guide).
