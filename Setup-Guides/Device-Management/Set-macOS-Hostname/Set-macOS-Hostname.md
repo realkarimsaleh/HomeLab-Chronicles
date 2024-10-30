@@ -1,73 +1,85 @@
-# Set macOS Hostname: Instructions for Using the Command Line Interface (CLI)
+# Configuring macOS Hostname via Command Line Interface (CLI)
 
-This guide provides step-by-step instructions to configure the primary hostname, Bonjour hostname, and computer name on macOS.
+This article provides instructions for setting the primary hostname, Bonjour hostname, and computer name on macOS through the Command Line Interface (CLI).
 
 ---
 
-### Step 1: Open Terminal
+### Step 1: Access Terminal
 
-1. Open your Terminal application to get started. You can find it in `Applications > Utilities > Terminal` or by searching for "Terminal" using Spotlight (`Cmd + Space`).
+1. Launch the Terminal application by navigating to `Applications > Utilities > Terminal` or by using Spotlight (`Cmd + Space`) to search for "Terminal."
 
-### Step 2: Change the Primary Hostname
+---
 
-The primary hostname is your Mac's fully qualified domain name (FQDN), commonly in the format `MacName.domain.com`. To set this:
+### Step 2: Set the Primary Hostname
 
-1. Type the following command:
+The primary hostname, also known as the Fully Qualified Domain Name (FQDN), uniquely identifies your Mac on external networks.
+
+1. Enter the following command in Terminal:
    ```bash
    sudo scutil --set HostName <new host name>
    ```
-   Replace `<new host name>` with your desired hostname, like `hostname.domain.co.uk`.
+   Replace `<new host name>` with your desired hostname in the format `hostname.domain.com`.
    
    **Example**:
    ```bash
-   sudo scutil --set HostName hostname.domain.co.uk
+   sudo scutil --set HostName hostname.domain.com
    ```
-2. Enter your password when prompted to complete this action.
+2. You will be prompted to enter your password to authorize this change.
 
-### Step 3: Change the Bonjour Hostname
+---
 
-The Bonjour hostname, or Local Hostname, is visible on the local network and usually ends with `.local`. Setting this name helps others on your network recognize your Mac.
+### Step 3: Set the Bonjour (Local) Hostname
 
-1. Use this command:
+The Bonjour hostname (or Local Hostname) is visible on local networks, typically ending with `.local`.
+
+1. To configure the Bonjour hostname, use:
    ```bash
    sudo scutil --set LocalHostName <new host name>
    ```
-   Replace `<new host name>` with your chosen name, such as `hostname`.
+   Replace `<new host name>` with your chosen name (e.g., `hostname`).
    
    **Example**:
    ```bash
    sudo scutil --set LocalHostName hostname
    ```
 
+---
+
 ### Step 4: Set the Computer Name
 
-The Computer Name is the user-friendly name visible in Finder and various other services. To set this:
+The Computer Name is the user-friendly name visible in Finder and in other macOS services.
 
-1. Enter this command:
+1. Set the Computer Name by running:
    ```bash
    sudo scutil --set ComputerName <new name>
    ```
-   Replace `<new name>` with your preferred computer name, like `hostname`.
+   Replace `<new name>` with your preferred name for display purposes (e.g., `hostname`).
    
    **Example**:
    ```bash
    sudo scutil --set ComputerName hostname
    ```
 
+---
+
 ### Step 5: Flush the DNS Cache
 
-To ensure your Mac recognizes these changes, flush the DNS cache by typing:
+Flush the DNS cache to ensure the new hostname settings are recognized:
+
 ```bash
 dscacheutil -flushcache
 ```
 
-### Step 6: Restart Your Mac
+---
 
-Finally, restart your Mac to apply the new hostname settings across all services.
+### Step 6: Restart macOS
+
+Restart your Mac to apply all hostname changes across system services.
 
 ---
 
-**Note:** Each hostname is used in different contexts:
-- **Primary Hostname (FQDN):** Used for identifying your Mac on wide networks.
-- **Bonjour Hostname:** Appears on the local network, usually ending in `.local`.
-- **Computer Name:** Displays in Finder and is used for personal identification in macOS services.
+### Hostname Types and Their Uses
+
+- **Primary Hostname (FQDN)**: Used to identify your Mac on broader networks.
+- **Bonjour Hostname**: Appears on the local network, usually formatted as `.local`.
+- **Computer Name**: Visible in Finder and other macOS interfaces for easy identification.
