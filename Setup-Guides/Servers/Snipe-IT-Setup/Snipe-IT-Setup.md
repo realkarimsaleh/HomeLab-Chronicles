@@ -1,237 +1,233 @@
 # Snipe-IT Setup Guide
 
-**Snipe-IT** is an open-source software for IT asset management that provides transparency, security, and oversight for your IT assets.
-
-Setting it up can be challenging, but I’ll guide you through the installation in a few steps.
+**Snipe-IT** is an open-source IT asset management tool designed to provide transparency, security, and oversight of IT assets. This guide provides a step-by-step setup process.
 
 ---
 
-## 1. Install Ubuntu Server 20.04
-You can install this on a physical server or a virtual machine.
+## Step 1: Install Ubuntu Server 20.04
 
-Open SSH through Terminal or Putty, then update and upgrade the packages by running:
+1. Install Ubuntu Server 20.04 on a physical server or virtual machine.
+2. Open an SSH session through Terminal or Putty.
+3. Update and upgrade packages:
 
-```bash
-sudo apt update -y && sudo apt upgrade -y
-```
+   ```bash
+   sudo apt update -y && sudo apt upgrade -y
+   ```
 
-## 2. Install LAMP on Ubuntu
-This will allow us to turn our Ubuntu into a web server. Follow these steps to install LAMP:
+---
+
+## Step 2: Install LAMP on Ubuntu
+
+LAMP (Linux, Apache, MySQL, PHP) is required to set up a web server environment.
 
 ### Install Apache2
-Install Apache2 using the following command:
+1. Install Apache2:
 
-```bash
-sudo apt install apache2 -y
-```
+   ```bash
+   sudo apt install apache2 -y
+   ```
 
-Enable and start the Apache2 service:
+2. Enable and start Apache2 service:
 
-```bash
-systemctl start apache2 && systemctl enable apache2
-```
+   ```bash
+   systemctl start apache2 && systemctl enable apache2
+   ```
 
-Check the status of the service:
+3. Verify service status:
 
-```bash
-systemctl status apache2
-```
+   ```bash
+   systemctl status apache2
+   ```
 
-Validate the installation by checking the Apache version:
+4. Allow HTTP and HTTPS traffic if the firewall is enabled:
 
-```bash
-apache2 -v
-```
+   ```bash
+   sudo ufw allow 80/tcp
+   sudo ufw allow 443/tcp
+   sudo ufw reload
+   ```
 
-If firewall is enabled, allow HTTP and HTTPS traffic:
+5. Verify setup by navigating to `http://<serverip>` in a browser.
 
-```bash
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw reload
-```
+6. Enable the required Apache module:
 
-Open a browser to verify the web server is ready:
-
-```
-http://<serverip>
-```
-
-Enable the required extension for Snipe-IT:
-
-```bash
-sudo a2enmod rewrite
-systemctl restart apache2
-```
-
-## 3. Install MySQL / MariaDB
-Install the database server and client:
-
-```bash
-sudo apt install mariadb-server mariadb-client -y
-```
-
-Enable and start the MariaDB service, then check its status:
-
-```bash
-sudo systemctl start mariadb && sudo systemctl enable mariadb
-sudo systemctl status mariadb
-```
-
-Secure the installation:
-
-```bash
-sudo mysql_secure_installation
-```
-
-## 4. PHP Installation
-Install PHP and its extensions. Here, we’ll use PHP 7.4:
-
-```bash
-sudo apt install php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath -y
-```
-
-Ensure all required PHP extensions are installed:
-
-```bash
-sudo apt install php php-bcmath php-bz2 php-intl php-gd php-mbstring php-mysql php-zip php-opcache php-pdo php-calendar php-ctype php-exif php-ffi php-fileinfo php-ftp php-iconv php-intl php-json php-mysqli php-phar php-posix php-readline php-shmop php-sockets php-sysvmsg php-sysvsem php-sysvshm php-tokenizer php-curl php-ldap -y
-```
-
-## 5. Install PHP Composer
-Snipe-IT depends on certain libraries, so we need to install PHP Composer:
-
-```bash
-sudo curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-```
-
-## 6. Create Database in MariaDB for Snipe-IT
-Open MySQL using the root user:
-
-```bash
-mysql -u root -p
-```
-
-Create the database and user, set the password, and assign privileges:
-
-```sql
-CREATE DATABASE snipeitdb;
-CREATE USER 'snipeituser'@'localhost' IDENTIFIED BY 'Password';
-GRANT ALL PRIVILEGES ON snipeitdb.* TO 'snipeituser'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
-```
-
-## 7. Install Snipe-IT
-Navigate to the website root directory:
-
-```bash
-cd /var/www/
-```
-
-Clone the Snipe-IT repository:
-
-```bash
-git clone https://github.com/snipe/snipe-it snipe-it
-```
-
-Navigate to the Snipe-IT folder:
-
-```bash
-cd /var/www/snipe-it
-```
-
-Copy the `.env` configuration file:
-
-```bash
-sudo cp /var/www/snipe-it/.env.example /var/www/snipe-it/.env
-```
-
-Edit the `.env` file to update application and database details:
-
-```bash
-sudo nano /var/www/snipe-it/.env
-```
-
-Set these values:
-
-```env
-APP_DEBUG=false
-APP_URL=Snipe-IT.example.co.uk
-APP_TIMEZONE='Europe/London'
-DB_DATABASE=snipeitdb
-DB_USERNAME=snipeituser
-DB_PASSWORD=Password
-```
-For *APP_TIMEZONE*, you should use a [PHP-supported timezone](https://www.php.net/manual/en/timezones.php) and enclose it in single quotes.
-
-Set permissions for the Snipe-IT directories:
-
-```bash
-sudo chown -R www-data:www-data /var/www/snipe-it
-sudo chmod -R 755 /var/www/snipe-it
-```
-
-Install Composer dependencies:
-
-```bash
-sudo composer update --no-plugins --no-scripts
-sudo composer install --no-dev --prefer-source --no-plugins --no-scripts
-```
-
-Generate the application key:
-
-```bash
-php artisan key:generate
-```
-
-## 8. Update Virtual Host
-Disable the default virtual host:
-
-```bash
-sudo a2dissite 000-default.conf
-```
-
-Create a virtual host for Snipe-IT:
-
-```bash
-sudo nano /etc/apache2/sites-available/snipe-it.conf
-```
-
-Add the following configuration:
-
-```apache
-<VirtualHost *:80>
-    ServerName Snipe-IT.example.co.uk
-    DocumentRoot /var/www/snipe-it/public
-    <Directory /var/www/snipe-it/public>
-        Options Indexes FollowSymLinks MultiViews
-        AllowOverride All
-        Order allow,deny
-        allow from all
-    </Directory>
-</VirtualHost>
-```
-
-Enable the Snipe-IT virtual host:
-
-```bash
-sudo a2ensite snipe-it.conf
-```
-
-Update folder permissions:
-
-```bash
-sudo chown -R www-data:www-data ./storage
-sudo chmod -R 755 ./storage
-```
-
-Restart Apache:
-
-```bash
-systemctl restart apache2
-```
+   ```bash
+   sudo a2enmod rewrite
+   systemctl restart apache2
+   ```
 
 ---
 
-Now, open your browser and run the Pre-Flight for Snipe-IT
+## Step 3: Install MySQL / MariaDB
+
+1. Install MariaDB:
+
+   ```bash
+   sudo apt install mariadb-server mariadb-client -y
+   ```
+
+2. Enable and start MariaDB:
+
+   ```bash
+   sudo systemctl start mariadb && sudo systemctl enable mariadb
+   ```
+
+3. Run `mysql_secure_installation` to secure the installation.
+
+---
+
+## Step 4: Install PHP
+
+1. Install PHP 7.4 and required extensions:
+
+   ```bash
+   sudo apt install php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath -y
+   ```
+
+2. Ensure all required PHP extensions are installed:
+
+   ```bash
+   sudo apt install php php-bcmath php-bz2 php-intl php-gd php-mbstring php-mysql php-zip php-opcache php-pdo php-calendar php-ctype php-exif php-ffi php-fileinfo php-ftp php-iconv php-intl php-json php-mysqli php-phar php-posix php-readline php-shmop php-sockets php-sysvmsg php-sysvsem php-sysvshm php-tokenizer php-curl php-ldap -y
+   ```
+
+---
+
+## Step 5: Install PHP Composer
+
+1. Install PHP Composer to manage dependencies:
+
+   ```bash
+   sudo curl -sS https://getcomposer.org/installer | php
+   sudo mv composer.phar /usr/local/bin/composer
+   ```
+
+---
+
+## Step 6: Create Database for Snipe-IT
+
+1. Log into MariaDB:
+
+   ```bash
+   mysql -u root -p
+   ```
+
+2. Create a database and user, set a password, and grant privileges:
+
+   ```sql
+   CREATE DATABASE snipeitdb;
+   CREATE USER 'snipeituser'@'localhost' IDENTIFIED BY 'Password';
+   GRANT ALL PRIVILEGES ON snipeitdb.* TO 'snipeituser'@'localhost';
+   FLUSH PRIVILEGES;
+   EXIT;
+   ```
+
+---
+
+## Step 7: Install Snipe-IT
+
+1. Navigate to the web root:
+
+   ```bash
+   cd /var/www/
+   ```
+
+2. Clone the Snipe-IT repository:
+
+   ```bash
+   git clone https://github.com/snipe/snipe-it snipe-it
+   ```
+
+3. Copy the environment configuration file:
+
+   ```bash
+   sudo cp /var/www/snipe-it/.env.example /var/www/snipe-it/.env
+   ```
+
+4. Update `.env` file with application and database details:
+
+   ```env
+   APP_DEBUG=false
+   APP_URL=Snipe-IT.example.co.uk
+   APP_TIMEZONE='Europe/London'
+   DB_DATABASE=snipeitdb
+   DB_USERNAME=snipeituser
+   DB_PASSWORD=Password
+   ```
+
+   Refer to [PHP-supported timezones](https://www.php.net/manual/en/timezones.php) for valid values.
+
+5. Set permissions for Snipe-IT directories:
+
+   ```bash
+   sudo chown -R www-data:www-data /var/www/snipe-it
+   sudo chmod -R 755 /var/www/snipe-it
+   ```
+
+6. Install Composer dependencies:
+
+   ```bash
+   sudo composer update --no-plugins --no-scripts
+   sudo composer install --no-dev --prefer-source --no-plugins --no-scripts
+   ```
+
+7. Generate the application key:
+
+   ```bash
+   php artisan key:generate
+   ```
+
+---
+
+## Step 8: Update Apache Virtual Host Configuration
+
+1. Disable the default virtual host:
+
+   ```bash
+   sudo a2dissite 000-default.conf
+   ```
+
+2. Create a virtual host configuration file for Snipe-IT:
+
+   ```bash
+   sudo nano /etc/apache2/sites-available/snipe-it.conf
+   ```
+
+   Add the following configuration:
+
+   ```apache
+   <VirtualHost *:80>
+       ServerName Snipe-IT.example.co.uk
+       DocumentRoot /var/www/snipe-it/public
+       <Directory /var/www/snipe-it/public>
+           Options Indexes FollowSymLinks MultiViews
+           AllowOverride All
+           Order allow,deny
+           allow from all
+       </Directory>
+   </VirtualHost>
+   ```
+
+3. Enable the new virtual host:
+
+   ```bash
+   sudo a2ensite snipe-it.conf
+   ```
+
+4. Set permissions for storage directories:
+
+   ```bash
+   sudo chown -R www-data:www-data ./storage
+   sudo chmod -R 755 ./storage
+   ```
+
+5. Restart Apache:
+
+   ```bash
+   systemctl restart apache2
+   ```
+
+---
+
+## Final Setup
+
+Open a browser and navigate to your server’s IP or hostname to complete the Snipe-IT pre-flight setup.
