@@ -6,8 +6,6 @@ This section provides guides focused on device configuration and management. Fro
 
 - [Set macOS Hostname](Set-macOS-Hostname/Set-macOS-Hostname.md): Step-by-step instructions for setting the hostname on a macOS device using the command line. 
 
----
-
 ## Purpose
 
 The **Device Management** guides are intended to help maintain organization and control over devices in your home lab environment.
