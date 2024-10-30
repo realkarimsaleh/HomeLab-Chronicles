@@ -5,7 +5,7 @@ This section of **HomeLab Chronicles** provides step-by-step setup guides for th
 ## Guides
 
 ### Networking
-- [Debranding Linksys SPNMX42](Networking/Debranding-Linksys-SPNMX42/Debranding-Linksys-SPNMX42.md): An attampt on debranding an ISP-Provided Linksys MX4200/SPNMX42/AX4200 router.
+- [Debranding Linksys SPNMX42](Networking/Debranding-Linksys-SPNMX42/Debranding-Linksys-SPNMX42.md): An attampt on debranding an ISP-Provided Linksys MX4200/SPNMX42/AX4200 router. (still under implementation)
 - [Hyper-V Networking Explained](Networking/Hyper-V/Hyper-V-Networking-Explained.md): A guide explaining Hyper-V networking concepts, configurations, and best practices.
 
 ### Servers
