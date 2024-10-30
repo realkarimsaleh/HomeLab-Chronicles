@@ -4,6 +4,7 @@ This section covers detailed setup guides for various servers used in my home la
 
 ## Available Guides
 
+- [Hyper-V Setup on Windows](Servers/Hyper-V/Windows-Hyper-V-Setup.md): Detailed setup guide for enabling Hyper-V on Windows Pro, Enterprise, and Education editions.
 - [Snipe-IT Setup](Snipe-IT-Setup/Snipe-IT-Setup.md): Instructions for installing and configuring Snipe-IT, an open-source asset management tool.
 
 ## Purpose
