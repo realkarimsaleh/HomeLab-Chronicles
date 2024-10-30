@@ -4,7 +4,8 @@ This section provides guides focused on device configuration and management. Fro
 
 ## Available Guides
 
-- [Set macOS Hostname](Set-macOS-Hostname/Set-macOS-Hostname.md): Step-by-step instructions for setting the hostname on a macOS device using the command line. 
+- [Set macOS Hostname](Set-macOS-Hostname/Set-macOS-Hostname.md): Step-by-step instructions for setting the hostname on a macOS device using the command line.
+- [Breaking into Windows Device](Breaking-Into-Windows-Device/Breaking-Into-Windows-Device.md): A guide for accessing a Windows System to allow temporary administrative access to reset the Administrator account.
 
 ## Purpose
 
