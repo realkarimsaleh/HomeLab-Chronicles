@@ -16,6 +16,7 @@ This section of **HomeLab Chronicles** provides step-by-step setup guides for th
 
 ### Device Management
 - [Set macOS Hostname](Device-Management/Set-macOS-Hostname/Set-macOS-Hostname.md): Instructions on setting the macOS hostname through the command line interface (CLI).
+- [Breaking into Windows System](Breaking-Into-Windows-Device/Breaking-Into-Windows-Device.md): A guide for accessing a Windows System to allow temporary administrative access to reset the Administrator account.
 
 ### Automation
 
