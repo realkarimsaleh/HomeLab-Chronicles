@@ -1,4 +1,4 @@
-# DDNS on a Raspberry Pi using Cloudflare API
+# DDNS on a Linux/ Unix Host using Cloudflare API
 
 This guide provides step-by-step instructions for setting up Dynamic DNS (DDNS) on any Unix based machine with Cloudflare's API. DDNS keeps your domain pointed at your home network even when your ISP assigns a dynamic public IP address that changes frequently.
 
